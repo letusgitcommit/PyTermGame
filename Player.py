@@ -59,8 +59,9 @@ class Entity:
         self.inventory[item_type] = item
 
     def calculate_damage_taken(self, damage):
-        total_damage = damage - self.calculate_defense()
-        if total_damage > 0:
+        defense_value = self.calculate_defense()
+        total_damage = damage - defense_value
+        if total_damage < 0:
             total_damage = 0
         self.health -= total_damage
         return '{} has taken {} points of damage'.format(self.entity_name, total_damage)
@@ -69,7 +70,7 @@ class Entity:
         change_in_health = self.calculate_hp()
         self.health += change_in_health
         message = '{} has added {} to their health'.format(self.entity_name, change_in_health)
-        return self.health, message
+        return message
 
     def attack(self):
         attack_damage = self.calculate_attack()
@@ -87,7 +88,9 @@ class Entity:
         if action == 1:
             return self.heal()
         if action == 2:
-            return  knight.calaculate_damage_taken(self.attack())
+            damage, message = self.attack()
+            message = knight.calculate_damage_taken(damage)
+            return message
         if action == 3:
             return "The ground quakes as the dragon roars"
 

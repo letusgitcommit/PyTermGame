@@ -124,6 +124,5 @@ def get_encounters(knight, dragon):
                                     get_random_item()
                               ))
         battle = Battle(knight, dragon)
-        LIST_OF_TRIALS.append(battle)
-    return LIST_OF_TRIALS
+    return LIST_OF_TRIALS, battle
 

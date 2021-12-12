@@ -72,29 +72,35 @@ You hear {sound}.\n\n'''.format(    setting = self.setting,
         else:
             raise WrongChoice
 
-class Battle(Trial):
+class Battle:
 
     list_of_options = ['Smite the dragon with your weapon',
                        'Drink your health potion to regain your battle stamina']
 
     def __init__(self, knight, dragon):
-        print('Gasp! You have come upon the dragon in his lair')
-        print(self.present_battle_options())
+        self.open_text = 'Gasp! You have come upon the dragon in his lair'
+        self.battle_text = self.present_battle_options()
+        self.knight = knight
+        self.dragon = dragon
 
 
     def present_battle_options(self):
         message_text = ''
         for option in self.list_of_options:
-            message_text += 'Choice {}: {}'.format(self.list_of_options.index(option), option)
+            message_text += 'Choice {}: {} \n'.format(self.list_of_options.index(option), option)
         return message_text
 
     def battle_choice(self):
         choice = int(input('What shall you choose? '))
-        if choice in range(1, 3):
-            if choice == 1:
+        if choice in range(0, 2):
+            if choice == 0:
                 message_text = ''
-                message_text += self.dragon.calculate_damage_taken(self.knight.attack())
-                message_text += self.dragon.random_action_dragon(self.knight)
+                damage, attack_text = self.knight.attack()
+                self.dragon.calculate_damage_taken(damage)
+                message_text += attack_text + '\n'
+                message_text += self.dragon.random_action_dragon(self.knight) + '\n'
                 return message_text
             else:
-                return self.knight.heal()
+                message_text = ''
+                message_text += self.knight.heal()
+                return message_text

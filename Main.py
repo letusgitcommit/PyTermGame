@@ -5,6 +5,7 @@ The Main application that will actually run the game.
 from Player import Entity
 from Plots import get_encounters
 from random import randint
+from Player_Item import Item
 
 def End_Game():
     print('You have died')
@@ -27,8 +28,7 @@ You will have to find whatever tools you can along the way to help you defeat th
     print(welcome_text)
 
     knight = Entity(str(input('What is your name, brave knight? ')))
-    list_of_trials = get_encounters(knight, dragon)
-    battle = list_of_trials.pop(-1)
+    list_of_trials, battle = get_encounters(knight, dragon)
     text_after_name = '''
 Thank you for braving the perils of this mountain, {username}.
 You will start your adventure by entering the cave not too far from where we are here
@@ -42,11 +42,18 @@ You will start your adventure by entering the cave not too far from where we are
         print('---------------------------------------------------------' , '', '')
         if knight.health < 1:
             End_Game()
-
-    while knight.health > 0 or dragon.health > 0:
+    print(battle.open_text)
+    knight.inventory['Weapon'] = Item('Excalibur', 50, 0)
+    while knight.health > 0 and dragon.health > 0:
+        print(battle.battle_text)
         print(battle.battle_choice())
+        print('\n', 'Dragon health is {}'.format(dragon.health), '\n')
+        print('\n', 'Knight health is {}'.format(knight.health), '\n')
     if knight.health < 1:
         End_Game()
+    else:
+        print('Yay, you have killed the dragon!')
+        exit()
 
 main()
 

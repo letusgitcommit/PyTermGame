@@ -24,4 +24,5 @@ class Item:
         return self.name
 
     def calculate_efficacy(self):
-        return randint(0, self.item_class * 10) + self.item_class
+        efficacy = randint(0, self.item_class * 10) + self.item_class
+        return efficacy
