@@ -15,13 +15,15 @@ class Player:
         self.player_name = player_name
         # The inventory will contain items that can be used to attack,
         # defend, and heal oneself
-        self.inventory = []
+        self.inventory = {}
         # At this time, we can just track health with a counter
         self.health = 100
         # Armor and Attack will hold two integers that track the range that we can
         # pull from to calculate the randint range
-        self.armor = []
-        self.attack = []
+        # self.armor = []
+        # self.attack = []
+        # commented out due to the choice to calculate attack and defense
+        # based on items in inventory
 
     def calculate_attack(self):
         pass
