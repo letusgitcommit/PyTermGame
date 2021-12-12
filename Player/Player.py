@@ -5,7 +5,8 @@ that the player can take on any given turn.
 """
 
 # We import the random module to handle attack and defense calculations
-from random import randint
+# from random import randint
+# commented out due to uncertainty of necessity
 
 
 class Player:
