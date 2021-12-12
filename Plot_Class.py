@@ -7,9 +7,12 @@ class Wrong_Choice(Exception):
     return "You did not pick a valid option!"
 
 class Trial:
-    def __init__(self, name, trial_text, pot_damage, pot_item):
+    def __init__(self, name, setting, feeling, sound, choices, pot_damage, pot_item):
         self.name = name
-        self.trial_text = trial_text
+        self.setting = setting
+        self.feeling = feeling
+        self.sound = sound
+        self.choices = choices
         self.pot_damage = pot_damage
         self.pot_item = pot_item
 
@@ -18,7 +21,17 @@ class Trial:
         return self.name
 
     def trial_description(self):
-        return self.trial_text
+        trial_text = '''You encounter {setting}. \n
+                        You feel {feeling}. \n
+                        You hear {sound}. \n'''.format( setting = self.setting,
+                                                        feeling = self.feeling,
+                                                        sound = self.sound)
+        trial_text += 'You have {amount_of_choices} choices. \n'.format(len(self.choices))
+        for choice in self.choices:
+            trial_text += 'Choice {choice_number}: {choice_text}'.format(choice_number
+                                                                         = (self.choices.index(choice) + 1),
+                                                                         choice_text = choice)
+        return trial_text
 
     def grant_damage(self):
         return self.pot_damage
