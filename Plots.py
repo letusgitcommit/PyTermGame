@@ -119,8 +119,8 @@ def get_encounters():
                                     list_of_sounds[randint(0, len(list_of_sounds)-1)],
                                     list_of_choices,
                                     dict_of_settings_and_choice_outcomes[key]),
-                                    pot_damage = get_damage(),
-                                    pot_item = get_random_item()
+                                    get_damage(),
+                                    get_random_item()
                               )
     return LIST_OF_TRIALS
 

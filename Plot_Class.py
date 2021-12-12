@@ -9,7 +9,7 @@ class WrongChoice(Exception):
 
 
 class Trial:
-    def __init__(self, name, setting, feeling, sound, choices, choice_outcomes, pot_damage=0, pot_item=None):
+    def __init__(self, name, setting, feeling, sound, choices, choice_outcomes, pot_damage, pot_item):
         self.name = name
         self.setting = setting
         self.feeling = feeling
