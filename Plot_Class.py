@@ -41,24 +41,22 @@ class Trial:
             raise WrongChoice
         return self.choice_outcomes[int(choice_int) - 1]
 
-    # Deprecated for the time being
-    # def grant_damage(self):
-    #     return self.pot_damage
-    #
-    # def grant_item(self):
-    #     return self.pot_item
-    #
-    # def grant_nothing(self):
-    #     return None
+    def grant_damage(self):
+        return self.pot_damage
 
-    # Deprecated for the time being
-    # def chosen(self, choice):
-    #     if choice == 1:
-    #         return self.grant_damage()
-    #     elif choice == 2:
-    #         return self.grant_item()
-    #     elif choice == 3:
-    #         return self.grant_nothing()
-    #     else:
-    #         raise Wrong_Choice
+    def grant_item(self):
+        return self.pot_item
+
+    def grant_nothing(self):
+        return None
+
+    def chosen(self, choice):
+        if choice == 1:
+            return self.grant_damage()
+        elif choice == 2:
+            return self.grant_item()
+        elif choice == 3:
+            return self.grant_nothing()
+        else:
+            raise Wrong_Choice
 

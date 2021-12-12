@@ -69,35 +69,28 @@ def get_random_item():
     return List_of_Items[randint(0, len(List_of_Items) - 1)]
 
 
-gri = get_random_item()
-
-
-def do_nothing():
-    return None
-
-
-dn = do_nothing()
-
-
 def get_damage():
     return randint(10, 50)
 
 
-gd = get_damage()
+# Deprecated for the time being
+# def do_nothing():
+#     return None
+#
 
-
-def exit_game():
-    raise EndGame
+#
+# def exit_game():
+#     raise EndGame
 
 
 # I need to specify an integer to represent the outcome and use a trial class method to operate the function.
 # These happen to all call their respective functions. Which is just prefilling the list and exiting the game.
 dict_of_settings_and_choice_outcomes = {
-    'a cold, wet, cobblestone room': [gri, dn, dn],
-    'the mouth of another cave, full of stalagmites and stalactites': [gri, gd, dn],
-    'a bare room made of pure white marble brick, unmarred by the passage of time': [gd, gri, dn],
-    'a torch lit dungeon cell, full of seemingly harmless multi-colored bubbles made of rubber': [dn, dn, dn],
-    'the bottom of a fissure opened to the sky, with a bridge in front of running across a river of lava': [gd, gri, exit_game]
+    'a cold, wet, cobblestone room': [2, 3, 3],
+    'the mouth of another cave, full of stalagmites and stalactites': [2, 1, 3],
+    'a bare room made of pure white marble brick, unmarred by the passage of time': [1, 2, 3],
+    'a torch lit dungeon cell, full of seemingly harmless multi-colored bubbles made of rubber': [3, 3, 3],
+    'the bottom of a fissure opened to the sky, with a bridge in front of you, running across a river of lava': [1, 2, 3]
 }
 
 list_of_feelings = [
@@ -111,7 +104,7 @@ list_of_feelings = [
 list_of_sounds = ['the claws of a tremendous and terrible beast scraping upon stone',
                   'something like the breaking of a wire',
                   'deafening silence',
-                  'the roar of a dragon'
+                  'the roar of a dragon',
                   'the scream of a maiden in distress']
 
 list_of_choices = ['Investigate Further...', 'Move On.', 'Escape as quickly as possible, yellow bellied coward!']
@@ -125,6 +118,9 @@ def get_encounters():
                                     list_of_feelings[randint(0, len(list_of_feelings)- 1)],
                                     list_of_sounds[randint(0, len(list_of_sounds)-1)],
                                     list_of_choices,
-                                    dict_of_settings_and_choice_outcomes[key]))
+                                    dict_of_settings_and_choice_outcomes[key]),
+                                    pot_damage = get_damage(),
+                                    pot_item = get_random_item()
+                              )
     return LIST_OF_TRIALS
 
