@@ -5,15 +5,11 @@ that the Entity can take on any given turn.
 We can use this for the dragon and the player.
 """
 
-# We import the random module to handle attack and defense calculations
-# from random import randint
-# commented out due to uncertainty of necessity
-
-# added a different directory to be able to reference a module in that
-# directory
-sys.path.insert(0, '../Player Items')
+# We import the random module to handle dragon actions
+from random import randint
 
 from Player_Item import Item
+
 
 class Entity:
 
@@ -27,7 +23,9 @@ class Entity:
         self.health = 100
         if entity_name == 'The Dragon'
             self.health + 100
-            self.inventory['Weapon'] =
+            self.inventory['Weapon'] = Item('Flaming Breath', 5)
+            self.inventory['Armor'] = Item('Dragon Scale', 5)
+            self.inventory['Health Potion'] = Item('Shed Skin', 5)
         # Armor and Attack will hold two integers that track the range that we can
         # pull from to calculate the randint range
         # self.armor = []
@@ -51,6 +49,7 @@ class Entity:
 
     def calculate_hp(self):
         health_potion = self.inventory.get('Health Potion')
+        self.inventory['Health Potion'] = None
         return self.get_efficacy(health_potion)
 
     def add_to_inventory(self, item, item_type):
@@ -61,4 +60,22 @@ class Entity:
         if total_damage > 0:
             total_damage = 0
         self.health -= total_damage
+
+    def heal(self):
+        self.health += self.calculate_hp()
+        return self.health
+
+    def attack(self):
+        return self.calculate_attack()
+
+    def random_action_dragon(self):
+        action = randint(1, 3)
+        if action == 1:
+            return self.heal()
+        if action == 2:
+            return  self.attack()
+        if action == 3:
+            return "The ground quakes as the dragon roars"
+
+
 
