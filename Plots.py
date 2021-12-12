@@ -3,6 +3,9 @@ This module will actually build out a list of encounters using the
 Plot_class module
 """
 
+class EndGame(Exception):
+    print('You have escaped with your life, but left your dignity far behind')
+
 import Plot_Class
 from Player_Item import Item
 
@@ -59,14 +62,27 @@ List_of_Items = [
     health_potion10
 ]
 
+def get_random_item():
+    return List_of_Items[randint(0, len(List_of_Items) - 1)]
+gri = get_random_item()
+
+def do_nothing():
+    return
+dn = do_nothing()
+
+def get_damage():
+    return randint(10, 50)
+gd = get_damage()
+
+def exit_game():
+    raise EndGame
 
 
-
-dict_of_settings_and_choice_outcomes = ['a cold, wet, cobblestone room',
-                    'the mouth of another cave, full of stalagmites and stalactites',
-                    'a bare room made of pure white marble brick, unmarred by the passage of time',
-                    'a torch lit dungeon cell, full of seemingly harmless multi-colored bubbles made of rubber',
-                    'the bottom of a fissure opened to the sky, with a bridge in front of running across a river of lava']
+dict_of_settings_and_choice_outcomes = {'a cold, wet, cobblestone room': [gri(), dn(), dn() ],
+                    'the mouth of another cave, full of stalagmites and stalactites': [gri(), gd(), dn()],
+                    'a bare room made of pure white marble brick, unmarred by the passage of time': [gd(), gri(), dn()],
+                    'a torch lit dungeon cell, full of seemingly harmless multi-colored bubbles made of rubber': [dn(), dn(), dn()],
+                    'the bottom of a fissure opened to the sky, with a bridge in front of running across a river of lava': [gd(), gri(), exit_game()]}
 
 list_of_feelings = ['Happy',
                     'Sad',
