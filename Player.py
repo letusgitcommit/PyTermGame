@@ -60,13 +60,18 @@ class Entity:
         if total_damage > 0:
             total_damage = 0
         self.health -= total_damage
+        return 'You have taken {} points of damage'.format(total_damage)
 
     def heal(self):
-        self.health += self.calculate_hp()
-        return self.health
+        change_in_health = self.calculate_hp()
+        self.health += change_in_health
+        message = 'You have added {} to your health'.format(change_in_health)
+        return self.health, message
 
     def attack(self):
-        return self.calculate_attack()
+        attack_damage = self.calculate_attack()
+        message = 'Hazzah! You have dealt {} points of damage'.format(attack_damage)
+        return attack_damage, message
 
     def random_action_dragon(self):
         action = randint(1, 3)

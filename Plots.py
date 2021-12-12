@@ -8,9 +8,9 @@ from Plot_Class import Trial
 from Player_Item import Item
 from random import randint
 
-
-class EndGame(Exception):
-    print('You have escaped with your life, but left your dignity far behind')
+# This Exception keeps getting raised at the start of the game, and I don't know.
+# class EndGame(Exception):
+#     print('You have escaped with your life, but left your dignity far behind')
 
 
 mjolnir = Item('Mjolnir, Hammer of Thor', 10)
@@ -118,9 +118,9 @@ def get_encounters():
                                     list_of_feelings[randint(0, len(list_of_feelings)- 1)],
                                     list_of_sounds[randint(0, len(list_of_sounds)-1)],
                                     list_of_choices,
-                                    dict_of_settings_and_choice_outcomes[key]),
+                                    dict_of_settings_and_choice_outcomes[key],
                                     get_damage(),
                                     get_random_item()
-                              )
+                              ))
     return LIST_OF_TRIALS
 

@@ -24,12 +24,14 @@ class Trial:
         return self.name
 
     def trial_description(self):
-        trial_text = '''You encounter {setting}. \n
-                        You feel {feeling}. \n
-                        You hear {sound}. \n'''.format( setting = self.setting,
-                                                        feeling = self.feeling,
-                                                        sound = self.sound)
-        trial_text += 'You have {} choices. \n'.format(len(self.choices))
+        trial_text = '''
+You encounter {setting}.
+You feel {feeling}.
+You hear {sound}.\n\n'''.format(    setting = self.setting,
+                                    feeling = self.feeling,
+                                    sound = self.sound)
+
+        trial_text += 'You have {} choices. \n\n'.format(len(self.choices))
         for choice in self.choices:
             trial_text += 'Choice {choice_number}: {choice_text} \n'.format(choice_number
                                                                          = (self.choices.index(choice) + 1),
@@ -41,8 +43,8 @@ class Trial:
             raise WrongChoice
         return self.choice_outcomes[int(choice_int) - 1]
 
-    def grant_damage(self):
-        return self.pot_damage
+    def grant_damage(self, entity):
+        entity.calculate_damage_taken(self.pot_damage)
 
     def grant_item(self):
         return self.pot_item
