@@ -22,7 +22,7 @@ class Entity:
         # At this time, we can just track health with a counter
         self.health = 100
         if entity_name == 'The Dragon'
-            self.health + 100
+            self.health += 100
             self.inventory['Weapon'] = Item('Flaming Breath', 5)
             self.inventory['Armor'] = Item('Dragon Scale', 5)
             self.inventory['Health Potion'] = Item('Shed Skin', 5)

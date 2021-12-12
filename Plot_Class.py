@@ -31,7 +31,7 @@ class Trial:
                                                         sound = self.sound)
         trial_text += 'You have {} choices. \n'.format(len(self.choices))
         for choice in self.choices:
-            trial_text += 'Choice {choice_number}: {choice_text}'.format(choice_number
+            trial_text += 'Choice {choice_number}: {choice_text} \n'.format(choice_number
                                                                          = (self.choices.index(choice) + 1),
                                                                          choice_text = choice)
         return trial_text
