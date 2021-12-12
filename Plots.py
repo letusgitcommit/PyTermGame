@@ -90,12 +90,14 @@ def exit_game():
     raise EndGame
 
 
+# I need to specify an integer to represent the outcome and use a trial class method to operate the function.
+# These happen to all call their respective functions. Which is just prefilling the list and exiting the game.
 dict_of_settings_and_choice_outcomes = {
-    'a cold, wet, cobblestone room': [gri(), dn, dn],
-    'the mouth of another cave, full of stalagmites and stalactites': [gri(), gd, dn],
+    'a cold, wet, cobblestone room': [gri, dn, dn],
+    'the mouth of another cave, full of stalagmites and stalactites': [gri, gd, dn],
     'a bare room made of pure white marble brick, unmarred by the passage of time': [gd, gri, dn],
     'a torch lit dungeon cell, full of seemingly harmless multi-colored bubbles made of rubber': [dn, dn, dn],
-    'the bottom of a fissure opened to the sky, with a bridge in front of running across a river of lava':[gd, gri, exit_game()]
+    'the bottom of a fissure opened to the sky, with a bridge in front of running across a river of lava': [gd, gri, exit_game]
 }
 
 list_of_feelings = [

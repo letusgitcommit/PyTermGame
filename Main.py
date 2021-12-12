@@ -19,7 +19,7 @@ def main():
     You will have to find whatever tools you can along the way to help you defeat the dragon'''
     print(welcome_text)
 
-    knight = Entity(Str(Input('What is your name, brave knight? ')))
+    knight = Entity(str(input('What is your name, brave knight? ')))
 
     text_after_name = '''
     Thank you for braving the perils of this mountain, {username}.

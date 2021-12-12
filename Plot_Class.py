@@ -37,9 +37,9 @@ class Trial:
         return trial_text
 
     def get_choice_outcome(self, choice_int):
-        if choice_int not in range(1,4):
+        if int(choice_int) not in range(1,4):
             raise WrongChoice
-        return self.choice_outcomes[choice_int - 1]
+        return self.choice_outcomes[int(choice_int) - 1]
 
     # Deprecated for the time being
     # def grant_damage(self):

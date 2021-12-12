@@ -21,7 +21,7 @@ class Entity:
         self.inventory = {'Weapon': None, 'Armor': None, 'Health Potion': None}
         # At this time, we can just track health with a counter
         self.health = 100
-        if entity_name == 'The Dragon'
+        if entity_name == 'The Dragon':
             self.health += 100
             self.inventory['Weapon'] = Item('Flaming Breath', 5)
             self.inventory['Armor'] = Item('Dragon Scale', 5)
