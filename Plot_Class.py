@@ -45,20 +45,22 @@ You hear {sound}.\n\n'''.format(    setting = self.setting,
 
     def grant_damage(self, entity):
         entity.calculate_damage_taken(self.pot_damage)
+        return 'You have received {} points of damage'.format(self.pot_damage)
 
-    def grant_item(self):
-        return self.pot_item
+    def grant_item(self, entity):
+        entity.add_to_inventory(self.pot_item, self.pot_item.item_type)
+        return 'You have received {}'.format(self.pot_item.name)
 
     def grant_nothing(self):
-        return None
+        return 'Nothing has happened'
 
     def chosen(self, choice):
         if choice == 1:
-            return self.grant_damage()
+            print(self.grant_damage())
         elif choice == 2:
-            return self.grant_item()
+            print(self.grant_item())
         elif choice == 3:
-            return self.grant_nothing()
+            print(self.grant_nothing())
         else:
-            raise Wrong_Choice
+            raise WrongChoice
 
