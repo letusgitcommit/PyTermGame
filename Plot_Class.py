@@ -3,9 +3,9 @@ This will be the module that will allow our knight to pass through the
 trials of our dungeon.
 """
 
-
+# Need to fix up my error handling
 class WrongChoice(Exception):
-    print("You did not pick a valid option!")
+    pass
 
 
 class Trial:
@@ -38,10 +38,10 @@ You hear {sound}.\n\n'''.format(    setting = self.setting,
                                                                          choice_text = choice)
         return trial_text
 
-    def get_choice_outcome(self, choice_int):
-        if int(choice_int) not in range(1,4):
+    def get_choice_outcome(self, choice_int, entity):
+        if int(choice_int) not in range(1,5):
             raise WrongChoice
-        return self.choice_outcomes[int(choice_int) - 1]
+        self.chosen(int(choice_int), entity)
 
     def grant_damage(self, entity):
         entity.calculate_damage_taken(self.pot_damage)
@@ -51,16 +51,47 @@ You hear {sound}.\n\n'''.format(    setting = self.setting,
         entity.add_to_inventory(self.pot_item, self.pot_item.item_type)
         return 'You have received {}'.format(self.pot_item.name)
 
-    def grant_nothing(self):
-        return 'Nothing has happened'
+    def grant_nothing(self, entity):
+        return '{}, nothing has happened...'.format(entity.entity_name)
 
-    def chosen(self, choice):
-        if choice == 1:
-            print(self.grant_damage())
-        elif choice == 2:
-            print(self.grant_item())
-        elif choice == 3:
-            print(self.grant_nothing())
+    def chosen(self, choice, entity):
+        if int(choice) < len(self.choice_outcomes) + 1:
+            choice_option = int(self.choice_outcomes[int(choice) - 1])
+        else:
+            choice_option = int(choice)
+        if choice_option == 1:
+            print(self.grant_damage(entity))
+        elif choice_option == 2:
+            print(self.grant_item(entity))
+        elif choice_option == 3:
+            print(self.grant_nothing(entity))
+        elif choice_option == 4:
+            print(entity.check_inventory())
+            next_choice = input('What\'s your next move? ')
+            self.get_choice_outcome(next_choice, entity)
         else:
             raise WrongChoice
 
+class Battle(Trial):
+
+    list_of_options = ['Smite the dragon with your weapon',
+                       'Drink your health potion to regain your battle stamina']
+
+    def __init__(self, knight, dragon):
+        print('Gasp! You have come upon the dragon in his lair')
+        print(self.present_battle_options())
+
+
+    def present_battle_options(self):
+        message_text = ''
+        for option in self.list_of_options:
+            message_text += 'Choice {}: {}'.format(self.list_of_options.index(option), option)
+        return message_text
+
+    def battle_choice(self):
+        choice = int(input('What shall you choose? '))
+        if choice in range(1, 3):
+            if choice == 1:
+                print(self.dragon.calculate_damage_taken(self.knight.attack()))
+            else:
+                print(self.knight.heal())

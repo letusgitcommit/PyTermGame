@@ -6,6 +6,13 @@ from Player import Entity
 from Plots import get_encounters
 from random import randint
 
+def End_Game():
+    print('You have died')
+    end_game_choice = input('Do you want to retry? Y/N')
+    if end_game_choice.lower() == 'y':
+        main()
+    else:
+        exit()
 
 def main():
     dragon = Entity('The Dragon')
@@ -31,8 +38,10 @@ You will start your adventure by entering the cave not too far from where we are
     for i in range(3):
         current_trial = list_of_trials.pop(randint(0,len(list_of_trials)-1))
         print(current_trial.trial_description())
-        current_trial.get_choice_outcome(input('What shall you do adventurer? '))
+        current_trial.get_choice_outcome(input('What shall you do adventurer? '), knight)
         print('---------------------------------------------------------' , '', '')
+        if knight.health < 1:
+            End_Game()
 
 main()
 

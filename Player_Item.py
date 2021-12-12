@@ -20,5 +20,8 @@ class Item:
         self.item_class = item_class
         self.item_type = self.item_types[item_type]
 
+    def __repr__(self):
+        return self.name
+
     def calculate_efficacy(self):
         return randint(0, self.item_class * 10) + self.item_class

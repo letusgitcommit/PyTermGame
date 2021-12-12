@@ -23,9 +23,9 @@ class Entity:
         self.health = 100
         if entity_name == 'The Dragon':
             self.health += 100
-            self.inventory['Weapon'] = Item('Flaming Breath', 5)
-            self.inventory['Armor'] = Item('Dragon Scale', 5)
-            self.inventory['Health Potion'] = Item('Shed Skin', 5)
+            self.inventory['Weapon'] = Item('Flaming Breath', 5, 0)
+            self.inventory['Armor'] = Item('Dragon Scale', 5, 1)
+            self.inventory['Health Potion'] = Item('Shed Skin', 5, 2)
         # Armor and Attack will hold two integers that track the range that we can
         # pull from to calculate the randint range
         # self.armor = []
@@ -50,7 +50,10 @@ class Entity:
     def calculate_hp(self):
         health_potion = self.inventory.get('Health Potion')
         self.inventory['Health Potion'] = None
-        return self.get_efficacy(health_potion)
+        if health_potion != None:
+            return self.get_efficacy(health_potion)
+        else:
+            return 1
 
     def add_to_inventory(self, item, item_type):
         self.inventory[item_type] = item
@@ -60,7 +63,7 @@ class Entity:
         if total_damage > 0:
             total_damage = 0
         self.health -= total_damage
-        return 'You have taken {} points of damage'.format(total_damage)
+        return '{} has taken {} points of damage'.format(self.entity_name, total_damage)
 
     def heal(self):
         change_in_health = self.calculate_hp()
@@ -72,6 +75,12 @@ class Entity:
         attack_damage = self.calculate_attack()
         message = 'Hazzah! You have dealt {} points of damage'.format(attack_damage)
         return attack_damage, message
+
+    def check_inventory(self):
+        message_text = ''
+        message_text += 'You have the following Items in your inventory: '
+        message_text += str(self.inventory)
+        return message_text
 
     def random_action_dragon(self):
         action = randint(1, 3)

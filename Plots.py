@@ -27,10 +27,10 @@ fancy_clothes = Item('Some fancy clothes, with a barf stain', 0, 1)
 sun_glasses = Item('Secret Agent sun glasses, complete with ear piece, used to stylishly conceal your identity', 0, 1)
 bear_skin = Item('A tattered bear skin turned cloak', 0, 1)
 diamond_armor = Item('May Notch guide you and keep you', 100, 1)
-health_potion1 = Item('Health Potion', 1, 3)
-health_potion2 = Item('Health Potion', 2, 3)
-health_potion4 = Item('Health Potion', 4, 3)
-health_potion10 = Item('Health Potion', 10, 3)
+health_potion1 = Item('Health Potion', 1, 2)
+health_potion2 = Item('Health Potion', 2, 2)
+health_potion4 = Item('Health Potion', 4, 2)
+health_potion10 = Item('Health Potion', 10, 2)
 
 List_of_Items = [
     mjolnir,
@@ -107,7 +107,8 @@ list_of_sounds = ['the claws of a tremendous and terrible beast scraping upon st
                   'the roar of a dragon',
                   'the scream of a maiden in distress']
 
-list_of_choices = ['Investigate Further...', 'Move On.', 'Escape as quickly as possible, yellow bellied coward!']
+list_of_choices = ['Investigate Further...', 'Move On.', 'Escape as quickly as possible, yellow bellied coward!',
+                   'Think about the items you have acquired thus far']
 
 
 def get_encounters():
