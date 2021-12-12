@@ -4,7 +4,7 @@ Plot_class module
 """
 
 
-from Plot_Class import Trial
+from Plot_Class import Trial, Battle
 from Player_Item import Item
 from random import randint
 
@@ -111,7 +111,7 @@ list_of_choices = ['Investigate Further...', 'Move On.', 'Escape as quickly as p
                    'Think about the items you have acquired thus far']
 
 
-def get_encounters():
+def get_encounters(knight, dragon):
     LIST_OF_TRIALS = []
     for key in dict_of_settings_and_choice_outcomes.keys():
         LIST_OF_TRIALS.append(Trial('placeholder',
@@ -123,5 +123,7 @@ def get_encounters():
                                     get_damage(),
                                     get_random_item()
                               ))
+        battle = Battle(knight, dragon)
+        LIST_OF_TRIALS.append(battle)
     return LIST_OF_TRIALS
 

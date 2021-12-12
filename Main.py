@@ -16,19 +16,19 @@ def End_Game():
 
 def main():
     dragon = Entity('The Dragon')
-    list_of_trials = get_encounters()
 
     welcome_text = '''
 Welcome brave knight, to the quest to save the princess!
 The kingdom needs you!
     
-Sadly, your horse has run off with all of gear. 
+Sadly, your horse has run off with all of your gear. 
 You will have to find whatever tools you can along the way to help you defeat the dragon
 '''
     print(welcome_text)
 
     knight = Entity(str(input('What is your name, brave knight? ')))
-
+    list_of_trials = get_encounters(knight, dragon)
+    battle = list_of_trials.pop(-1)
     text_after_name = '''
 Thank you for braving the perils of this mountain, {username}.
 You will start your adventure by entering the cave not too far from where we are here
@@ -42,6 +42,11 @@ You will start your adventure by entering the cave not too far from where we are
         print('---------------------------------------------------------' , '', '')
         if knight.health < 1:
             End_Game()
+
+    while knight.health > 0 or dragon.health > 0:
+        print(battle.battle_choice())
+    if knight.health < 1:
+        End_Game()
 
 main()
 

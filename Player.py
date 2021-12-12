@@ -68,12 +68,12 @@ class Entity:
     def heal(self):
         change_in_health = self.calculate_hp()
         self.health += change_in_health
-        message = 'You have added {} to your health'.format(change_in_health)
+        message = '{} has added {} to their health'.format(self.entity_name, change_in_health)
         return self.health, message
 
     def attack(self):
         attack_damage = self.calculate_attack()
-        message = 'Hazzah! You have dealt {} points of damage'.format(attack_damage)
+        message = 'Huzzah! You have dealt {} points of damage'.format(attack_damage)
         return attack_damage, message
 
     def check_inventory(self):
@@ -82,12 +82,12 @@ class Entity:
         message_text += str(self.inventory)
         return message_text
 
-    def random_action_dragon(self):
+    def random_action_dragon(self, knight):
         action = randint(1, 3)
         if action == 1:
             return self.heal()
         if action == 2:
-            return  self.attack()
+            return  knight.calaculate_damage_taken(self.attack())
         if action == 3:
             return "The ground quakes as the dragon roars"
 

@@ -92,6 +92,9 @@ class Battle(Trial):
         choice = int(input('What shall you choose? '))
         if choice in range(1, 3):
             if choice == 1:
-                print(self.dragon.calculate_damage_taken(self.knight.attack()))
+                message_text = ''
+                message_text += self.dragon.calculate_damage_taken(self.knight.attack())
+                message_text += self.dragon.random_action_dragon(self.knight)
+                return message_text
             else:
-                print(self.knight.heal())
+                return self.knight.heal()
