@@ -8,10 +8,6 @@ from Plot_Class import Trial, Battle
 from Player_Item import Item
 from random import randint
 
-# This Exception keeps getting raised at the start of the game, and I don't know.
-# class EndGame(Exception):
-#     print('You have escaped with your life, but left your dignity far behind')
-
 
 mjolnir = Item('Mjolnir, Hammer of Thor', 10, 0)
 wooden_stick = Item('A Wooden Stick', 0, 0)
@@ -73,18 +69,6 @@ def get_damage():
     return randint(10, 50)
 
 
-# Deprecated for the time being
-# def do_nothing():
-#     return None
-#
-
-#
-# def exit_game():
-#     raise EndGame
-
-
-# I need to specify an integer to represent the outcome and use a trial class method to operate the function.
-# These happen to all call their respective functions. Which is just prefilling the list and exiting the game.
 dict_of_settings_and_choice_outcomes = {
     'a cold, wet, cobblestone room': [2, 3, 3],
     'the mouth of another cave, full of stalagmites and stalactites': [2, 1, 3],
@@ -99,16 +83,22 @@ list_of_feelings = [
     'Angry',
     'Bored',
     'Hot',
-                    ]
+]
 
-list_of_sounds = ['the claws of a tremendous and terrible beast scraping upon stone',
-                  'something like the breaking of a wire',
-                  'deafening silence',
-                  'the roar of a dragon',
-                  'the scream of a maiden in distress']
+list_of_sounds = [
+    'the claws of a tremendous and terrible beast scraping upon stone',
+    'something like the breaking of a wire',
+    'deafening silence',
+    'the roar of a dragon',
+    'the scream of a maiden in distress'
+]
 
-list_of_choices = ['Investigate Further...', 'Move On.', 'Escape as quickly as possible, yellow bellied coward!',
-                   'Think about the items you have acquired thus far']
+list_of_choices = [
+    'Investigate Further...',
+    'Move On.',
+    'Escape as quickly as possible, yellow bellied coward!',
+    'Think about the items you have acquired thus far'
+]
 
 
 def get_encounters(knight, dragon):
@@ -116,7 +106,7 @@ def get_encounters(knight, dragon):
     for key in dict_of_settings_and_choice_outcomes.keys():
         LIST_OF_TRIALS.append(Trial('placeholder',
                                     key,
-                                    list_of_feelings[randint(0, len(list_of_feelings)- 1)],
+                                    list_of_feelings[randint(0, len(list_of_feelings) - 1)],
                                     list_of_sounds[randint(0, len(list_of_sounds)-1)],
                                     list_of_choices,
                                     dict_of_settings_and_choice_outcomes[key],
@@ -125,4 +115,3 @@ def get_encounters(knight, dragon):
                               ))
         battle = Battle(knight, dragon)
     return LIST_OF_TRIALS, battle
-

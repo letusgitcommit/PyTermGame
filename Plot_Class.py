@@ -3,11 +3,9 @@ This will be the module that will allow our knight to pass through the
 trials of our dungeon.
 """
 
-# Need to fix up my error handling
+
 class WrongChoice(Exception):
-    def __init__(self):
-        self.encounter_message = 'Please Enter 1, 2, 3, 4'
-        self.battler_message = 'Please Enter 1, 2'
+    pass
 
 
 class Trial:
@@ -77,6 +75,7 @@ You hear {sound}.\n\n'''.format(    setting = self.setting,
         else:
             raise WrongChoice
 
+
 class Battle:
 
     list_of_options = ['Smite the dragon with your weapon',
@@ -112,4 +111,4 @@ class Battle:
                 message_text += self.dragon.random_action_dragon(self.knight) + '\n\n'
                 return message_text
         else:
-            return('\n', 'Please choose 0 or 1.', '\n')
+            return '\n', 'Please choose 0 or 1.', '\n'

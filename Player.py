@@ -26,12 +26,6 @@ class Entity:
             self.inventory['Weapon'] = Item('Flaming Breath', 5, 0)
             self.inventory['Armor'] = Item('Dragon Scale', 5, 1)
             self.inventory['Health Potion'] = Item('Shed Skin', 5, 2)
-        # Armor and Attack will hold two integers that track the range that we can
-        # pull from to calculate the randint range
-        # self.armor = []
-        # self.attack = []
-        # commented out due to the choice to calculate attack and defense
-        # based on items in inventory
 
     def get_efficacy(self, item):
         try:
@@ -93,6 +87,3 @@ class Entity:
             return message
         if action == 3:
             return "The ground quakes as the dragon roars"
-
-
-
