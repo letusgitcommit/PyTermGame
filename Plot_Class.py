@@ -56,19 +56,22 @@ You hear {sound}.\n\n'''.format(    setting = self.setting,
     def grant_nothing(self, entity):
         return '{}, nothing has happened...'.format(entity.entity_name)
 
+    def print_newlines(self, text):
+        print('\n', '--------------', text, '--------------','\n')
+
     def chosen(self, choice, entity):
         if int(choice) < len(self.choice_outcomes) + 1:
             choice_option = int(self.choice_outcomes[int(choice) - 1])
         else:
             choice_option = int(choice)
         if choice_option == 1:
-            print(self.grant_damage(entity))
+            self.print_newlines(self.grant_damage(entity))
         elif choice_option == 2:
-            print(self.grant_item(entity))
+            self.print_newlines(self.grant_item(entity))
         elif choice_option == 3:
-            print(self.grant_nothing(entity))
+            self.print_newlines(self.grant_nothing(entity))
         elif choice_option == 4:
-            print(entity.check_inventory())
+            self.print_newlines(entity.check_inventory())
             next_choice = input('What\'s your next move? ')
             self.get_choice_outcome(next_choice, entity)
         else:
@@ -96,13 +99,17 @@ class Battle:
         choice = int(input('What shall you choose? '))
         if choice in range(0, 2):
             if choice == 0:
-                message_text = ''
+                message_text = '\n\n'
                 damage, attack_text = self.knight.attack()
                 self.dragon.calculate_damage_taken(damage)
                 message_text += attack_text + '\n'
                 message_text += self.dragon.random_action_dragon(self.knight) + '\n'
                 return message_text
             else:
-                message_text = ''
+                message_text = '\n\n'
                 message_text += self.knight.heal()
+                message_text += '\n\n'
+                message_text += self.dragon.random_action_dragon(self.knight) + '\n\n'
                 return message_text
+        else:
+            return('\n', 'Please choose 0 or 1.', '\n')
