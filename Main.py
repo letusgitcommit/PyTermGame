@@ -35,10 +35,18 @@ You will start your adventure by entering the cave not too far from where we are
     '''.format(username = knight.entity_name)
     print(text_after_name)
 
+    def get_choice_encounter(knight):
+        current_trial.get_choice_outcome(input('What shall you do adventurer? '), knight)
+
     for i in range(3):
         current_trial = list_of_trials.pop(randint(0,len(list_of_trials)-1))
         print(current_trial.trial_description())
-        current_trial.get_choice_outcome(input('What shall you do adventurer? '), knight)
+        try:
+            get_choice_encounter(knight)
+        except ValueError:
+            print('Sorry, that what was a wrong choice. Please try again.')
+            get_choice_encounter(knight)
+
         print('---------------------------------------------------------' , '', '')
         if knight.health < 1:
             End_Game()
@@ -46,7 +54,11 @@ You will start your adventure by entering the cave not too far from where we are
     knight.inventory['Weapon'] = Item('Excalibur', 50, 0)
     while knight.health > 0 and dragon.health > 0:
         print(battle.battle_text)
-        print(battle.battle_choice())
+        try:
+            print(battle.battle_choice())
+        except ValueError:
+            print('Sorry, please enter 0 or 1.')
+            print(battle.battle_text())
         print('\n', 'Dragon health is {}'.format(dragon.health), '\n')
         print('\n', 'Knight health is {}'.format(knight.health), '\n')
     if knight.health < 1:

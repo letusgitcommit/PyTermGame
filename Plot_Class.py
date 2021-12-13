@@ -5,7 +5,9 @@ trials of our dungeon.
 
 # Need to fix up my error handling
 class WrongChoice(Exception):
-    pass
+    def __init__(self):
+        self.encounter_message = 'Please Enter 1, 2, 3, 4'
+        self.battler_message = 'Please Enter 1, 2'
 
 
 class Trial:
