@@ -59,8 +59,9 @@ You will start your adventure by entering the cave not too far from where we are
         except ValueError:
             print('Sorry, please enter 0 or 1.')
             print(battle.battle_text())
-        print('\n', 'Dragon health is {}'.format(dragon.health), '\n')
-        print('\n', 'Knight health is {}'.format(knight.health), '\n')
+        #Used in debugging
+        # print('\n', 'Dragon health is {}'.format(dragon.health), '\n')
+        # print('\n', 'Knight health is {}'.format(knight.health), '\n')
     if knight.health < 1:
         End_Game()
     else:
